@@ -21,6 +21,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("blog_article")
+@Accessors(chain = true)
 public class Article  {
     @TableId
     private Long id;
