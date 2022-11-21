@@ -16,6 +16,7 @@ public class BeanCopyUtils {
     private BeanCopyUtils(){
     }
 
+    //希望pojo类所有内容拷贝到vo类
     public static <V> V copyBean(Object source, Class<V> clazz) {
         //创建目标对象
         V result = null;
