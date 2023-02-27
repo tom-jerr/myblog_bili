@@ -1,0 +1,4 @@
+# Project exclude paths
+/myblog_admin/target/
+/myblog_blog/target/
+/myblog_framework/target/

@@ -24,3 +24,13 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
       id-type: auto
+
+oss:
+  accessKey: daddasd
+  secretKey: weqeqwe
+  bucket: uestclzy-blog
+
+logging:
+  config: /JAVA_programms/myblog_bili/myblog_blog/src/main/resources/logback-spring.xml
+
+

@@ -13,10 +13,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @version 1.0.0
  * 2022/11/7 17:59
  */
-@SpringBootApplication(scanBasePackages = {"com"})
-//@EnableAutoConfiguration(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
+@SpringBootApplication()
 @MapperScan("com.uestclzy.mapper")
-@EnableScheduling
+@EnableScheduling   // 开启定时任务
 @EnableSwagger2
 public class LzyBlogApplication {
     public static void main(String[] args) {

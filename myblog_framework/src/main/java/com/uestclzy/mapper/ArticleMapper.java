@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * @version 1.0.0
  * 2022/11/7 18:14
  */
-
+@Mapper
 public interface ArticleMapper extends BaseMapper<Article> {
 }
