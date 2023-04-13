@@ -10,6 +10,7 @@ import com.uestclzy.domain.entity.Role;
 import com.uestclzy.domain.entity.RoleMenu;
 import com.uestclzy.domain.vo.PageVo;
 import com.uestclzy.mapper.RoleMapper;
+import com.uestclzy.service.RoleMenuService;
 import com.uestclzy.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,8 @@ import java.util.stream.Collectors;
 @Service("roleService")
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
-//    @Autowired
-//    private RoleMenuService roleMenuService;
+    @Autowired
+    private RoleMenuService roleMenuService;
 
     @Override
     public List<String> selectRoleKeyByUserId(Long id) {
@@ -68,22 +69,22 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         return ResponseResult.okResult(pageVo);
     }
 
-//    @Override
-//    @Transactional
-//    public void insertRole(Role role) {
-//        save(role);
-//        System.out.println(role.getId());
-//        if(role.getMenuIds()!=null && role.getMenuIds().length>0){
-//            insertRoleMenu(role);
-//        }
-//    }
+    @Override
+    @Transactional
+    public void insertRole(Role role) {
+        save(role);
+        System.out.println(role.getId());
+        if(role.getMenuIds()!=null && role.getMenuIds().length>0){
+            insertRoleMenu(role);
+        }
+    }
 
-//    @Override
-//    public void updateRole(Role role) {
-//        updateById(role);
-//        roleMenuService.deleteRoleMenuByRoleId(role.getId());
-//        insertRoleMenu(role);
-//    }
+    @Override
+    public void updateRole(Role role) {
+        updateById(role);
+        roleMenuService.deleteRoleMenuByRoleId(role.getId());
+        insertRoleMenu(role);
+    }
 
     @Override
     public List<Role> selectRoleAll() {
@@ -95,10 +96,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         return getBaseMapper().selectRoleIdByUserId(userId);
     }
 
-//    private void insertRoleMenu(Role role) {
-//        List<RoleMenu> roleMenuList = Arrays.stream(role.getMenuIds())
-//                .map(memuId -> new RoleMenu(role.getId(), memuId))
-//                .collect(Collectors.toList());
-//        roleMenuService.saveBatch(roleMenuList);
-//    }
+    private void insertRoleMenu(Role role) {
+        List<RoleMenu> roleMenuList = Arrays.stream(role.getMenuIds())
+                .map(memuId -> new RoleMenu(role.getId(), memuId))
+                .collect(Collectors.toList());
+        roleMenuService.saveBatch(roleMenuList);
+    }
 }
